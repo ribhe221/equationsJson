@@ -21,8 +21,8 @@
                 "easy",
                 "algorithms"
             ],
-            "timeComplexity": "O(1)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(1)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "person-compare-to",
@@ -43,8 +43,8 @@
                 "easy",
                 "object-oriented"
             ],
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(n)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "planet-temperature",
@@ -65,8 +65,8 @@
                 "medium",
                 "object-oriented"
             ],
-            "timeComplexity": "O(1)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(1)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "planets-collection",
@@ -88,8 +88,8 @@
                 "medium",
                 "collections"
             ],
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(n)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "shape-inheritance",
@@ -113,8 +113,8 @@
                 "hard",
                 "object-oriented"
             ],
-            "timeComplexity": "O(1)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(1)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "person-to-string",
@@ -135,8 +135,8 @@
                 "medium",
                 "object-oriented"
             ],
-            "timeComplexity": "O(1)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(1)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "array-sum",
@@ -157,8 +157,8 @@
                 "easy",
                 "algorithms"
             ],
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(n)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "string-reverse",
@@ -179,8 +179,8 @@
                 "easy",
                 "algorithms"
             ],
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(n)"
+            "bestCaseComplexity": "O(n)",
+            "worstCaseComplexity": "O(n)"
         },
         {
             "id": "find-max",
@@ -201,8 +201,8 @@
                 "easy",
                 "algorithms"
             ],
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(n)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "count-vowels",
@@ -224,8 +224,8 @@
                 "easy",
                 "algorithms"
             ],
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(n)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "factorial",
@@ -246,8 +246,8 @@
                 "medium",
                 "algorithms"
             ],
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(n)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "is-palindrome",
@@ -269,8 +269,8 @@
                 "medium",
                 "algorithms"
             ],
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(n)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "fibonacci",
@@ -292,8 +292,8 @@
                 "medium",
                 "algorithms"
             ],
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(n)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "student-grade",
@@ -314,8 +314,8 @@
                 "medium",
                 "object-oriented"
             ],
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(n)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "book-library",
@@ -336,8 +336,8 @@
                 "hard",
                 "collections"
             ],
-            "timeComplexity": "O(n)",
-            "spaceComplexity": "O(n)"
+            "bestCaseComplexity": "O(n)",
+            "worstCaseComplexity": "O(n)"
         },
         {
             "id": "rectangle-class",
@@ -358,8 +358,8 @@
                 "medium",
                 "object-oriented"
             ],
-            "timeComplexity": "O(1)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(1)",
+            "worstCaseComplexity": "O(1)"
         },
         {
             "id": "prime-checker",
@@ -381,8 +381,8 @@
                 "hard",
                 "algorithms"
             ],
-            "timeComplexity": "O(\u00e2\u02c6\u0161n)",
-            "spaceComplexity": "O(1)"
+            "bestCaseComplexity": "O(\u00e2\u02c6\u0161n)",
+            "worstCaseComplexity": "O(1)"
         }
     ]
 }
