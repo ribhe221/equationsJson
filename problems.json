@@ -1,630 +1,409 @@
-import { CodeProblem } from '@/types/code';
-
-/**
- * Sample code problems based on Java classes from javaProblems folder
- * Each problem includes:
- * - questionCode: Incomplete code for students to complete
- * - solutionCode: Complete, correct solution
- * - expectedOutput: Output when solution runs
- * - Metadata: difficulty, category, description, hints
- */
-
-export const codeProblems: CodeProblem[] = [
-  // EASY: Utils.getRandom method
-  {
-    id: 'utils-get-random',
-    title: 'Implement Random Number Generator',
-    difficulty: 'easy',
-    category: 'algorithms',
-    description: 'Complete the `getRandom` method in the Utils class that returns a random integer between min and max (inclusive).',
-    questionCode: `public class Utils {
-    public static int getRandom(int min, int max) {
-        // TODO: Implement random number generation
-        // Return a random integer between min and max (inclusive)
-        return 0;
-    }
-    
-    public static void main(String[] args) {
-        int result = getRandom(1, 10);
-        System.out.println("Random number between 1 and 10: " + result);
-        
-        // Test that result is in valid range
-        if (result >= 1 && result <= 10) {
-            System.out.println("Valid range: true");
-        } else {
-            System.out.println("Valid range: false");
+{
+    "version": "1.0.0",
+    "lastUpdated": "2025-10-24",
+    "problems": [
+        {
+            "id": "utils-get-random",
+            "title": "Implement Random Number Generator",
+            "difficulty": "easy",
+            "category": "algorithms",
+            "description": "Complete the `getRandom` method in the Utils class that returns a random integer between min and max (inclusive).",
+            "questionCode": "public class Utils {\n    public static int getRandom(int min, int max) {\n        // TODO: Implement random number generation\n        // Return a random integer between min and max (inclusive)\n        return 0;\n    }\n    \n    public static void main(String[] args) {\n        int result = getRandom(1, 10);\n        System.out.println(\"Random number between 1 and 10: \" + result);\n        \n        // Test that result is in valid range\n        if (result >= 1 && result <= 10) {\n            System.out.println(\"Valid range: true\");\n        } else {\n            System.out.println(\"Valid range: false\");\n        }\n    }\n}",
+            "solutionCode": "public class Utils {\n    public static int getRandom(int min, int max) {\n        return (int) (Math.random() * (max - min + 1)) + min;\n    }\n    \n    public static void main(String[] args) {\n        int result = getRandom(1, 10);\n        System.out.println(\"Random number between 1 and 10: \" + result);\n        \n        // Test that result is in valid range\n        if (result >= 1 && result <= 10) {\n            System.out.println(\"Valid range: true\");\n        } else {\n            System.out.println(\"Valid range: false\");\n        }\n    }\n}",
+            "expectedOutput": "Random number between 1 and 10: 5\nValid range: true",
+            "hints": [
+                "Use Math.random() which returns a double between 0.0 and 1.0",
+                "Scale the random value by multiplying by (max - min + 1)",
+                "Add min to shift the range to start at min",
+                "Cast the result to int to get a whole number"
+            ],
+            "tags": [
+                "math",
+                "random",
+                "basics"
+            ],
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "person-compare-to",
+            "title": "Implement Person Comparison",
+            "difficulty": "easy",
+            "category": "object-oriented",
+            "description": "Complete the `compareTo` method in the Person class to compare persons by name first, then by age if names are equal.",
+            "questionCode": "public class Person implements Comparable<Person> {\n    private String name;\n    private int age;\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    @Override\n    public int compareTo(Person o) {\n        // TODO: Compare by name first, then by age if names are equal\n        // Return negative if this < o, 0 if equal, positive if this > o\n        return 0;\n    }\n    \n    public static void main(String[] args) {\n        Person p1 = new Person(\"Alice\", 25);\n        Person p2 = new Person(\"Bob\", 30);\n        Person p3 = new Person(\"Alice\", 20);\n        \n        System.out.println(\"Alice(25) vs Bob(30): \" + p1.compareTo(p2));\n        System.out.println(\"Bob(30) vs Alice(25): \" + p2.compareTo(p1));\n        System.out.println(\"Alice(25) vs Alice(20): \" + p1.compareTo(p3));\n    }\n}",
+            "solutionCode": "public class Person implements Comparable<Person> {\n    private String name;\n    private int age;\n\n    public Person(String name, int age) {\n        this.name = name;\n        this.age = age;\n    }\n\n    @Override\n    public int compareTo(Person o) {\n        int result = this.name.compareTo(o.name);\n        if (result == 0) {\n            result = Integer.compare(age, o.age);\n        }\n        return result;\n    }\n    \n    public static void main(String[] args) {\n        Person p1 = new Person(\"Alice\", 25);\n        Person p2 = new Person(\"Bob\", 30);\n        Person p3 = new Person(\"Alice\", 20);\n        \n        System.out.println(\"Alice(25) vs Bob(30): \" + p1.compareTo(p2));\n        System.out.println(\"Bob(30) vs Alice(25): \" + p2.compareTo(p1));\n        System.out.println(\"Alice(25) vs Alice(20): \" + p1.compareTo(p3));\n    }\n}",
+            "expectedOutput": "Alice(25) vs Bob(30): -1\nBob(30) vs Alice(25): 1\nAlice(25) vs Alice(20): 5",
+            "hints": [
+                "Use String.compareTo() to compare names",
+                "If names are equal (result == 0), compare ages",
+                "Use Integer.compare() to compare age values",
+                "Return the comparison result"
+            ],
+            "tags": [
+                "comparable",
+                "sorting",
+                "object-oriented"
+            ],
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "planet-temperature",
+            "title": "Planet Temperature Display",
+            "difficulty": "medium",
+            "category": "object-oriented",
+            "description": "Complete the Planet class with a constructor and toString method that displays planet name and temperature.",
+            "questionCode": "public class Planet {\n    private double t;\n    private String name;\n\n    // TODO: Implement constructor that takes temperature and name\n    public Planet(double t, String name) {\n        \n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public double getT() {\n        return t;\n    }\n    \n    // TODO: Implement toString to return \"name : temperature°C\"\n    public String toString() {\n        return \"\";\n    }\n    \n    public static void main(String[] args) {\n        Planet earth = new Planet(15.0, \"Earth\");\n        Planet mars = new Planet(-63.0, \"Mars\");\n        \n        System.out.println(earth.toString());\n        System.out.println(mars.toString());\n        System.out.println(\"Earth temp: \" + earth.getT());\n    }\n}",
+            "solutionCode": "public class Planet {\n    private double t;\n    private String name;\n\n    public Planet(double t, String name) {\n        this.name = name;\n        this.t = t;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    public double getT() {\n        return t;\n    }\n    \n    public String toString() {\n        return name + \" : \" + t + \"C°\";\n    }\n    \n    public static void main(String[] args) {\n        Planet earth = new Planet(15.0, \"Earth\");\n        Planet mars = new Planet(-63.0, \"Mars\");\n        \n        System.out.println(earth.toString());\n        System.out.println(mars.toString());\n        System.out.println(\"Earth temp: \" + earth.getT());\n    }\n}",
+            "expectedOutput": "Earth : 15.0C°\nMars : -63.0C°\nEarth temp: 15.0",
+            "hints": [
+                "In the constructor, assign parameters to instance variables using this keyword",
+                "The toString method should concatenate name, \" : \", temperature, and \"C°\"",
+                "Use the + operator for string concatenation",
+                "Remember to return the formatted string"
+            ],
+            "tags": [
+                "classes",
+                "constructors",
+                "toString"
+            ],
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "planets-collection",
+            "title": "Planet Collection Analysis",
+            "difficulty": "medium",
+            "category": "collections",
+            "description": "Complete methods in the Planets class to find the average temperature and locate a planet by temperature.",
+            "questionCode": "import java.util.ArrayList;\n\npublic class Planet {\n    private double t;\n    private String name;\n\n    public Planet(double t, String name) {\n        this.name = name;\n        this.t = t;\n    }\n\n    public double getT() {\n        return t;\n    }\n}\n\npublic class Planets {\n    private ArrayList<Planet> alPlanets = new ArrayList<>();\n    \n    public void add(Planet p) {\n        alPlanets.add(p);\n    }\n\n    // TODO: Calculate and return the average temperature of all planets\n    public double getAverageTemperature() {\n        return 0.0;\n    }\n\n    // TODO: Find the index of a planet with the given temperature\n    // Return -1 if not found\n    public int getFindResult(double t) {\n        return -1;\n    }\n    \n    public static void main(String[] args) {\n        Planets planets = new Planets();\n        planets.add(new Planet(15.0, \"Earth\"));\n        planets.add(new Planet(-63.0, \"Mars\"));\n        planets.add(new Planet(464.0, \"Venus\"));\n        \n        System.out.println(\"Average temperature: \" + planets.getAverageTemperature());\n        System.out.println(\"Index of planet with temp 15.0: \" + planets.getFindResult(15.0));\n        System.out.println(\"Index of planet with temp 100.0: \" + planets.getFindResult(100.0));\n    }\n}",
+            "solutionCode": "import java.util.ArrayList;\n\npublic class Planet {\n    private double t;\n    private String name;\n\n    public Planet(double t, String name) {\n        this.name = name;\n        this.t = t;\n    }\n\n    public double getT() {\n        return t;\n    }\n}\n\npublic class Planets {\n    private ArrayList<Planet> alPlanets = new ArrayList<>();\n    \n    public void add(Planet p) {\n        alPlanets.add(p);\n    }\n\n    public double getAverageTemperature() {\n        double sum = 0;\n        for (Planet p : alPlanets) {\n            sum += p.getT();\n        }\n        return sum / alPlanets.size();\n    }\n\n    public int getFindResult(double t) {\n        for (int i = 0; i < alPlanets.size(); i++) {\n            Planet p = alPlanets.get(i);\n            if (t == p.getT()) {\n                return i;\n            }\n        }\n        return -1;\n    }\n    \n    public static void main(String[] args) {\n        Planets planets = new Planets();\n        planets.add(new Planet(15.0, \"Earth\"));\n        planets.add(new Planet(-63.0, \"Mars\"));\n        planets.add(new Planet(464.0, \"Venus\"));\n        \n        System.out.println(\"Average temperature: \" + planets.getAverageTemperature());\n        System.out.println(\"Index of planet with temp 15.0: \" + planets.getFindResult(15.0));\n        System.out.println(\"Index of planet with temp 100.0: \" + planets.getFindResult(100.0));\n    }\n}",
+            "expectedOutput": "Average temperature: 138.66666666666666\nIndex of planet with temp 15.0: 0\nIndex of planet with temp 100.0: -1",
+            "hints": [
+                "For average: use a for-each loop to sum all temperatures",
+                "Divide the sum by the size of the ArrayList",
+                "For find: use a regular for loop with index",
+                "Compare each planet's temperature with the target temperature",
+                "Return the index when found, or -1 if the loop completes without finding"
+            ],
+            "tags": [
+                "collections",
+                "arraylist",
+                "loops",
+                "searching"
+            ],
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "shape-inheritance",
+            "title": "Shape Inheritance System",
+            "difficulty": "hard",
+            "category": "object-oriented",
+            "description": "Complete the Shape inheritance hierarchy with abstract Shape class and concrete Circle and Square subclasses.",
+            "questionCode": "public class Utils {\n    public static int getRandom(int min, int max) {\n        return (int) (Math.random() * (max - min + 1)) + min;\n    }\n}\n\n// TODO: Make Shape an abstract class\npublic class Shape {\n    protected int x;\n    protected int y;\n    protected String color;\n\n    public Shape(int x, int y, String color) {\n        this.x = x;\n        this.y = y;\n        this.color = color;\n    }\n\n    public String getColor() {\n        return color;\n    }\n\n    // TODO: Declare abstract method getArea() that returns double\n    \n    public void changeColor() {\n        int colorValue = Utils.getRandom(0, 2);\n        if (colorValue == 0) color = \"Red\";\n        else if (colorValue == 1) color = \"Green\";\n        else color = \"Blue\";\n    }\n}\n\n// TODO: Extend Shape class\npublic class Circle {\n    private int radius;\n\n    public Circle(int x, int y, String color, int radius) {\n        // TODO: Call super constructor\n        this.radius = radius;\n    }\n\n    // TODO: Override getArea() to return circle area (π * r²)\n    \n}\n\n// TODO: Extend Shape class\npublic class Square {\n    private int sideLength;\n\n    public Square(int x, int y, String color, int sideLength) {\n        // TODO: Call super constructor\n        this.sideLength = sideLength;\n    }\n\n    // TODO: Override getArea() to return square area (side²)\n    \n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Circle circle = new Circle(10, 20, \"Red\", 5);\n        Square square = new Square(30, 40, \"Blue\", 10);\n        \n        System.out.println(\"Circle color: \" + circle.getColor());\n        System.out.println(\"Circle area: \" + circle.getArea());\n        System.out.println(\"Square color: \" + square.getColor());\n        System.out.println(\"Square area: \" + square.getArea());\n        \n        circle.changeColor();\n        System.out.println(\"Circle new color: \" + circle.getColor());\n    }\n}",
+            "solutionCode": "public class Utils {\n    public static int getRandom(int min, int max) {\n        return (int) (Math.random() * (max - min + 1)) + min;\n    }\n}\n\npublic abstract class Shape {\n    protected int x;\n    protected int y;\n    protected String color;\n\n    public Shape(int x, int y, String color) {\n        this.x = x;\n        this.y = y;\n        this.color = color;\n    }\n\n    public String getColor() {\n        return color;\n    }\n\n    public abstract double getArea();\n    \n    public void changeColor() {\n        int colorValue = Utils.getRandom(0, 2);\n        if (colorValue == 0) color = \"Red\";\n        else if (colorValue == 1) color = \"Green\";\n        else color = \"Blue\";\n    }\n}\n\npublic class Circle extends Shape {\n    private int radius;\n\n    public Circle(int x, int y, String color, int radius) {\n        super(x, y, color);\n        this.radius = radius;\n    }\n\n    @Override\n    public double getArea() {\n        return Math.PI * radius * radius;\n    }\n}\n\npublic class Square extends Shape {\n    private int sideLength;\n\n    public Square(int x, int y, String color, int sideLength) {\n        super(x, y, color);\n        this.sideLength = sideLength;\n    }\n\n    @Override\n    public double getArea() {\n        return sideLength * sideLength;\n    }\n}\n\npublic class Main {\n    public static void main(String[] args) {\n        Circle circle = new Circle(10, 20, \"Red\", 5);\n        Square square = new Square(30, 40, \"Blue\", 10);\n        \n        System.out.println(\"Circle color: \" + circle.getColor());\n        System.out.println(\"Circle area: \" + circle.getArea());\n        System.out.println(\"Square color: \" + square.getColor());\n        System.out.println(\"Square area: \" + square.getArea());\n        \n        circle.changeColor();\n        System.out.println(\"Circle new color: \" + circle.getColor());\n    }\n}",
+            "expectedOutput": "Circle color: Red\nCircle area: 78.53981633974483\nSquare color: Blue\nSquare area: 100.0\nCircle new color: Green",
+            "hints": [
+                "Use the \"abstract\" keyword before the class declaration for Shape",
+                "Declare an abstract method with no body: public abstract double getArea();",
+                "Use \"extends Shape\" in Circle and Square class declarations",
+                "Call super(x, y, color) as the first line in subclass constructors",
+                "Override getArea() in both subclasses with @Override annotation",
+                "Circle area formula: Math.PI * radius * radius",
+                "Square area formula: sideLength * sideLength"
+            ],
+            "tags": [
+                "inheritance",
+                "abstract-classes",
+                "polymorphism",
+                "oop"
+            ],
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "person-to-string",
+            "title": "Person Contact Information",
+            "difficulty": "medium",
+            "category": "object-oriented",
+            "description": "Complete the Person class with a constructor and toString method that formats contact information.",
+            "questionCode": "public class Person implements Comparable<Person> {\n    private String telNum;\n    private String mail;\n    private String name;\n\n    // TODO: Implement constructor\n    public Person(String name, String mail, String telNum) {\n        \n    }\n\n    public String getTelNum() {\n        return telNum;\n    }\n\n    public String getMail() {\n        return mail;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    @Override\n    public int compareTo(Person o) {\n        return this.name.compareTo(o.name);\n    }\n    \n    // TODO: Implement toString to return \"name;mail;telNum\"\n    @Override\n    public String toString() {\n        return \"\";\n    }\n    \n    public static void main(String[] args) {\n        Person p1 = new Person(\"Alice\", \"alice@email.com\", \"555-1234\");\n        Person p2 = new Person(\"Bob\", \"bob@email.com\", \"555-5678\");\n        \n        System.out.println(p1.toString());\n        System.out.println(p2.toString());\n        System.out.println(\"Name: \" + p1.getName());\n    }\n}",
+            "solutionCode": "public class Person implements Comparable<Person> {\n    private String telNum;\n    private String mail;\n    private String name;\n\n    public Person(String name, String mail, String telNum) {\n        this.name = name;\n        this.mail = mail; \n        this.telNum = telNum;\n    }\n\n    public String getTelNum() {\n        return telNum;\n    }\n\n    public String getMail() {\n        return mail;\n    }\n\n    public String getName() {\n        return name;\n    }\n\n    @Override\n    public int compareTo(Person o) {\n        return this.name.compareTo(o.name);\n    }\n    \n    @Override\n    public String toString() {\n        return name + \";\" + mail + \";\" + telNum;\n    }\n    \n    public static void main(String[] args) {\n        Person p1 = new Person(\"Alice\", \"alice@email.com\", \"555-1234\");\n        Person p2 = new Person(\"Bob\", \"bob@email.com\", \"555-5678\");\n        \n        System.out.println(p1.toString());\n        System.out.println(p2.toString());\n        System.out.println(\"Name: \" + p1.getName());\n    }\n}",
+            "expectedOutput": "Alice;alice@email.com;555-1234\nBob;bob@email.com;555-5678\nName: Alice",
+            "hints": [
+                "In the constructor, assign each parameter to the corresponding instance variable",
+                "Use the this keyword to distinguish instance variables from parameters",
+                "In toString, concatenate name, \";\", mail, \";\", and telNum",
+                "Use the + operator for string concatenation"
+            ],
+            "tags": [
+                "classes",
+                "constructors",
+                "toString",
+                "comparable"
+            ],
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "array-sum",
+            "title": "Array Sum Calculator",
+            "difficulty": "easy",
+            "category": "algorithms",
+            "description": "Complete a method that calculates the sum of all elements in an integer array.",
+            "questionCode": "public class ArrayUtils {\n    // TODO: Implement method to calculate sum of array elements\n    public static int calculateSum(int[] numbers) {\n        return 0;\n    }\n    \n    public static void main(String[] args) {\n        int[] arr1 = {1, 2, 3, 4, 5};\n        int[] arr2 = {10, 20, 30};\n        int[] arr3 = {};\n        \n        System.out.println(\"Sum of arr1: \" + calculateSum(arr1));\n        System.out.println(\"Sum of arr2: \" + calculateSum(arr2));\n        System.out.println(\"Sum of arr3: \" + calculateSum(arr3));\n    }\n}",
+            "solutionCode": "public class ArrayUtils {\n    public static int calculateSum(int[] numbers) {\n        int sum = 0;\n        for (int num : numbers) {\n            sum += num;\n        }\n        return sum;\n    }\n    \n    public static void main(String[] args) {\n        int[] arr1 = {1, 2, 3, 4, 5};\n        int[] arr2 = {10, 20, 30};\n        int[] arr3 = {};\n        \n        System.out.println(\"Sum of arr1: \" + calculateSum(arr1));\n        System.out.println(\"Sum of arr2: \" + calculateSum(arr2));\n        System.out.println(\"Sum of arr3: \" + calculateSum(arr3));\n    }\n}",
+            "expectedOutput": "Sum of arr1: 15\nSum of arr2: 60\nSum of arr3: 0",
+            "hints": [
+                "Initialize a sum variable to 0",
+                "Use a for-each loop to iterate through the array",
+                "Add each element to the sum",
+                "Return the final sum"
+            ],
+            "tags": [
+                "arrays",
+                "loops",
+                "basics"
+            ],
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "string-reverse",
+            "title": "String Reverser",
+            "difficulty": "easy",
+            "category": "algorithms",
+            "description": "Complete a method that reverses a given string.",
+            "questionCode": "public class StringUtils {\n    // TODO: Implement method to reverse a string\n    public static String reverseString(String input) {\n        return \"\";\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Reversed 'hello': \" + reverseString(\"hello\"));\n        System.out.println(\"Reversed 'Java': \" + reverseString(\"Java\"));\n        System.out.println(\"Reversed 'a': \" + reverseString(\"a\"));\n    }\n}",
+            "solutionCode": "public class StringUtils {\n    public static String reverseString(String input) {\n        StringBuilder reversed = new StringBuilder();\n        for (int i = input.length() - 1; i >= 0; i--) {\n            reversed.append(input.charAt(i));\n        }\n        return reversed.toString();\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Reversed 'hello': \" + reverseString(\"hello\"));\n        System.out.println(\"Reversed 'Java': \" + reverseString(\"Java\"));\n        System.out.println(\"Reversed 'a': \" + reverseString(\"a\"));\n    }\n}",
+            "expectedOutput": "Reversed 'hello': olleh\nReversed 'Java': avaJ\nReversed 'a': a",
+            "hints": [
+                "Use StringBuilder to build the reversed string",
+                "Loop from the end of the string to the beginning",
+                "Append each character to the StringBuilder",
+                "Convert StringBuilder to String and return"
+            ],
+            "tags": [
+                "strings",
+                "loops",
+                "basics"
+            ],
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": "find-max",
+            "title": "Find Maximum Value",
+            "difficulty": "easy",
+            "category": "algorithms",
+            "description": "Complete a method that finds the maximum value in an integer array.",
+            "questionCode": "public class ArrayUtils {\n    // TODO: Implement method to find maximum value in array\n    public static int findMax(int[] numbers) {\n        return 0;\n    }\n    \n    public static void main(String[] args) {\n        int[] arr1 = {3, 7, 2, 9, 1};\n        int[] arr2 = {-5, -2, -10, -1};\n        int[] arr3 = {42};\n        \n        System.out.println(\"Max of arr1: \" + findMax(arr1));\n        System.out.println(\"Max of arr2: \" + findMax(arr2));\n        System.out.println(\"Max of arr3: \" + findMax(arr3));\n    }\n}",
+            "solutionCode": "public class ArrayUtils {\n    public static int findMax(int[] numbers) {\n        int max = numbers[0];\n        for (int i = 1; i < numbers.length; i++) {\n            if (numbers[i] > max) {\n                max = numbers[i];\n            }\n        }\n        return max;\n    }\n    \n    public static void main(String[] args) {\n        int[] arr1 = {3, 7, 2, 9, 1};\n        int[] arr2 = {-5, -2, -10, -1};\n        int[] arr3 = {42};\n        \n        System.out.println(\"Max of arr1: \" + findMax(arr1));\n        System.out.println(\"Max of arr2: \" + findMax(arr2));\n        System.out.println(\"Max of arr3: \" + findMax(arr3));\n    }\n}",
+            "expectedOutput": "Max of arr1: 9\nMax of arr2: -1\nMax of arr3: 42",
+            "hints": [
+                "Initialize max to the first element of the array",
+                "Loop through the rest of the array starting at index 1",
+                "Compare each element with the current max",
+                "Update max if a larger value is found"
+            ],
+            "tags": [
+                "arrays",
+                "loops",
+                "searching"
+            ],
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "count-vowels",
+            "title": "Count Vowels in String",
+            "difficulty": "easy",
+            "category": "algorithms",
+            "description": "Complete a method that counts the number of vowels (a, e, i, o, u) in a string.",
+            "questionCode": "public class StringUtils {\n    // TODO: Implement method to count vowels in a string\n    public static int countVowels(String text) {\n        return 0;\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Vowels in 'hello': \" + countVowels(\"hello\"));\n        System.out.println(\"Vowels in 'Java Programming': \" + countVowels(\"Java Programming\"));\n        System.out.println(\"Vowels in 'xyz': \" + countVowels(\"xyz\"));\n    }\n}",
+            "solutionCode": "public class StringUtils {\n    public static int countVowels(String text) {\n        int count = 0;\n        String vowels = \"aeiouAEIOU\";\n        for (int i = 0; i < text.length(); i++) {\n            if (vowels.indexOf(text.charAt(i)) != -1) {\n                count++;\n            }\n        }\n        return count;\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Vowels in 'hello': \" + countVowels(\"hello\"));\n        System.out.println(\"Vowels in 'Java Programming': \" + countVowels(\"Java Programming\"));\n        System.out.println(\"Vowels in 'xyz': \" + countVowels(\"xyz\"));\n    }\n}",
+            "expectedOutput": "Vowels in 'hello': 2\nVowels in 'Java Programming': 5\nVowels in 'xyz': 0",
+            "hints": [
+                "Create a string containing all vowels (both uppercase and lowercase)",
+                "Initialize a counter to 0",
+                "Loop through each character in the input string",
+                "Check if the character is in the vowels string using indexOf()",
+                "Increment counter if it's a vowel"
+            ],
+            "tags": [
+                "strings",
+                "loops",
+                "basics"
+            ],
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "factorial",
+            "title": "Calculate Factorial",
+            "difficulty": "medium",
+            "category": "algorithms",
+            "description": "Complete a method that calculates the factorial of a non-negative integer.",
+            "questionCode": "public class MathUtils {\n    // TODO: Implement method to calculate factorial\n    public static long factorial(int n) {\n        return 0;\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Factorial of 5: \" + factorial(5));\n        System.out.println(\"Factorial of 0: \" + factorial(0));\n        System.out.println(\"Factorial of 7: \" + factorial(7));\n    }\n}",
+            "solutionCode": "public class MathUtils {\n    public static long factorial(int n) {\n        if (n == 0 || n == 1) {\n            return 1;\n        }\n        long result = 1;\n        for (int i = 2; i <= n; i++) {\n            result *= i;\n        }\n        return result;\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Factorial of 5: \" + factorial(5));\n        System.out.println(\"Factorial of 0: \" + factorial(0));\n        System.out.println(\"Factorial of 7: \" + factorial(7));\n    }\n}",
+            "expectedOutput": "Factorial of 5: 120\nFactorial of 0: 1\nFactorial of 7: 5040",
+            "hints": [
+                "Handle the base case: factorial of 0 and 1 is 1",
+                "Initialize result to 1",
+                "Loop from 2 to n and multiply result by each number",
+                "Use long type to handle larger factorials"
+            ],
+            "tags": [
+                "math",
+                "loops",
+                "algorithms"
+            ],
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "is-palindrome",
+            "title": "Check Palindrome",
+            "difficulty": "medium",
+            "category": "algorithms",
+            "description": "Complete a method that checks if a string is a palindrome (reads the same forwards and backwards).",
+            "questionCode": "public class StringUtils {\n    // TODO: Implement method to check if string is palindrome\n    public static boolean isPalindrome(String text) {\n        return false;\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Is 'racecar' palindrome: \" + isPalindrome(\"racecar\"));\n        System.out.println(\"Is 'hello' palindrome: \" + isPalindrome(\"hello\"));\n        System.out.println(\"Is 'level' palindrome: \" + isPalindrome(\"level\"));\n    }\n}",
+            "solutionCode": "public class StringUtils {\n    public static boolean isPalindrome(String text) {\n        int left = 0;\n        int right = text.length() - 1;\n        while (left < right) {\n            if (text.charAt(left) != text.charAt(right)) {\n                return false;\n            }\n            left++;\n            right--;\n        }\n        return true;\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Is 'racecar' palindrome: \" + isPalindrome(\"racecar\"));\n        System.out.println(\"Is 'hello' palindrome: \" + isPalindrome(\"hello\"));\n        System.out.println(\"Is 'level' palindrome: \" + isPalindrome(\"level\"));\n    }\n}",
+            "expectedOutput": "Is 'racecar' palindrome: true\nIs 'hello' palindrome: false\nIs 'level' palindrome: true",
+            "hints": [
+                "Use two pointers: one at the start and one at the end",
+                "Compare characters at both pointers",
+                "If they don't match, return false",
+                "Move pointers towards the center and continue",
+                "If all characters match, return true"
+            ],
+            "tags": [
+                "strings",
+                "algorithms",
+                "two-pointers"
+            ],
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "fibonacci",
+            "title": "Fibonacci Sequence",
+            "difficulty": "medium",
+            "category": "algorithms",
+            "description": "Complete a method that returns the nth Fibonacci number (0, 1, 1, 2, 3, 5, 8, ...).",
+            "questionCode": "public class MathUtils {\n    // TODO: Implement method to calculate nth Fibonacci number\n    public static int fibonacci(int n) {\n        return 0;\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Fibonacci(0): \" + fibonacci(0));\n        System.out.println(\"Fibonacci(1): \" + fibonacci(1));\n        System.out.println(\"Fibonacci(6): \" + fibonacci(6));\n        System.out.println(\"Fibonacci(10): \" + fibonacci(10));\n    }\n}",
+            "solutionCode": "public class MathUtils {\n    public static int fibonacci(int n) {\n        if (n == 0) return 0;\n        if (n == 1) return 1;\n        \n        int prev = 0;\n        int curr = 1;\n        for (int i = 2; i <= n; i++) {\n            int next = prev + curr;\n            prev = curr;\n            curr = next;\n        }\n        return curr;\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Fibonacci(0): \" + fibonacci(0));\n        System.out.println(\"Fibonacci(1): \" + fibonacci(1));\n        System.out.println(\"Fibonacci(6): \" + fibonacci(6));\n        System.out.println(\"Fibonacci(10): \" + fibonacci(10));\n    }\n}",
+            "expectedOutput": "Fibonacci(0): 0\nFibonacci(1): 1\nFibonacci(6): 8\nFibonacci(10): 55",
+            "hints": [
+                "Handle base cases: fib(0) = 0, fib(1) = 1",
+                "Use two variables to track previous two numbers",
+                "Loop from 2 to n",
+                "Calculate next number as sum of previous two",
+                "Update the two tracking variables"
+            ],
+            "tags": [
+                "math",
+                "algorithms",
+                "sequences"
+            ],
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "student-grade",
+            "title": "Student Grade Manager",
+            "difficulty": "medium",
+            "category": "object-oriented",
+            "description": "Complete the Student class with methods to calculate average grade and determine pass/fail status.",
+            "questionCode": "public class Student {\n    private String name;\n    private int[] grades;\n    \n    public Student(String name, int[] grades) {\n        this.name = name;\n        this.grades = grades;\n    }\n    \n    // TODO: Calculate and return the average grade\n    public double getAverage() {\n        return 0.0;\n    }\n    \n    // TODO: Return true if average >= 60, false otherwise\n    public boolean isPassing() {\n        return false;\n    }\n    \n    public String getName() {\n        return name;\n    }\n    \n    public static void main(String[] args) {\n        Student s1 = new Student(\"Alice\", new int[]{85, 90, 78});\n        Student s2 = new Student(\"Bob\", new int[]{45, 55, 50});\n        \n        System.out.println(s1.getName() + \" average: \" + s1.getAverage());\n        System.out.println(s1.getName() + \" passing: \" + s1.isPassing());\n        System.out.println(s2.getName() + \" average: \" + s2.getAverage());\n        System.out.println(s2.getName() + \" passing: \" + s2.isPassing());\n    }\n}",
+            "solutionCode": "public class Student {\n    private String name;\n    private int[] grades;\n    \n    public Student(String name, int[] grades) {\n        this.name = name;\n        this.grades = grades;\n    }\n    \n    public double getAverage() {\n        int sum = 0;\n        for (int grade : grades) {\n            sum += grade;\n        }\n        return (double) sum / grades.length;\n    }\n    \n    public boolean isPassing() {\n        return getAverage() >= 60;\n    }\n    \n    public String getName() {\n        return name;\n    }\n    \n    public static void main(String[] args) {\n        Student s1 = new Student(\"Alice\", new int[]{85, 90, 78});\n        Student s2 = new Student(\"Bob\", new int[]{45, 55, 50});\n        \n        System.out.println(s1.getName() + \" average: \" + s1.getAverage());\n        System.out.println(s1.getName() + \" passing: \" + s1.isPassing());\n        System.out.println(s2.getName() + \" average: \" + s2.getAverage());\n        System.out.println(s2.getName() + \" passing: \" + s2.isPassing());\n    }\n}",
+            "expectedOutput": "Alice average: 84.33333333333333\nAlice passing: true\nBob average: 50.0\nBob passing: false",
+            "hints": [
+                "For getAverage: sum all grades and divide by the number of grades",
+                "Cast sum to double before division to get decimal result",
+                "For isPassing: call getAverage() and check if it's >= 60",
+                "Return the boolean result of the comparison"
+            ],
+            "tags": [
+                "classes",
+                "arrays",
+                "methods"
+            ],
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "book-library",
+            "title": "Book Library System",
+            "difficulty": "hard",
+            "category": "collections",
+            "description": "Complete the Library class with methods to manage a collection of books, including search and filter functionality.",
+            "questionCode": "import java.util.ArrayList;\n\nclass Book {\n    private String title;\n    private String author;\n    private int year;\n    \n    public Book(String title, String author, int year) {\n        this.title = title;\n        this.author = author;\n        this.year = year;\n    }\n    \n    public String getTitle() { return title; }\n    public String getAuthor() { return author; }\n    public int getYear() { return year; }\n}\n\npublic class Library {\n    private ArrayList<Book> books = new ArrayList<>();\n    \n    public void addBook(Book book) {\n        books.add(book);\n    }\n    \n    // TODO: Find and return a book by title (case-insensitive)\n    // Return null if not found\n    public Book findByTitle(String title) {\n        return null;\n    }\n    \n    // TODO: Return list of all books by a specific author\n    public ArrayList<Book> getBooksByAuthor(String author) {\n        return null;\n    }\n    \n    // TODO: Return count of books published after given year\n    public int countBooksAfterYear(int year) {\n        return 0;\n    }\n    \n    public static void main(String[] args) {\n        Library lib = new Library();\n        lib.addBook(new Book(\"1984\", \"George Orwell\", 1949));\n        lib.addBook(new Book(\"Animal Farm\", \"George Orwell\", 1945));\n        lib.addBook(new Book(\"Brave New World\", \"Aldous Huxley\", 1932));\n        \n        Book found = lib.findByTitle(\"1984\");\n        System.out.println(\"Found: \" + (found != null ? found.getTitle() : \"null\"));\n        \n        ArrayList<Book> orwellBooks = lib.getBooksByAuthor(\"George Orwell\");\n        System.out.println(\"Orwell books: \" + orwellBooks.size());\n        \n        System.out.println(\"Books after 1940: \" + lib.countBooksAfterYear(1940));\n    }\n}",
+            "solutionCode": "import java.util.ArrayList;\n\nclass Book {\n    private String title;\n    private String author;\n    private int year;\n    \n    public Book(String title, String author, int year) {\n        this.title = title;\n        this.author = author;\n        this.year = year;\n    }\n    \n    public String getTitle() { return title; }\n    public String getAuthor() { return author; }\n    public int getYear() { return year; }\n}\n\npublic class Library {\n    private ArrayList<Book> books = new ArrayList<>();\n    \n    public void addBook(Book book) {\n        books.add(book);\n    }\n    \n    public Book findByTitle(String title) {\n        for (Book book : books) {\n            if (book.getTitle().equalsIgnoreCase(title)) {\n                return book;\n            }\n        }\n        return null;\n    }\n    \n    public ArrayList<Book> getBooksByAuthor(String author) {\n        ArrayList<Book> result = new ArrayList<>();\n        for (Book book : books) {\n            if (book.getAuthor().equals(author)) {\n                result.add(book);\n            }\n        }\n        return result;\n    }\n    \n    public int countBooksAfterYear(int year) {\n        int count = 0;\n        for (Book book : books) {\n            if (book.getYear() > year) {\n                count++;\n            }\n        }\n        return count;\n    }\n    \n    public static void main(String[] args) {\n        Library lib = new Library();\n        lib.addBook(new Book(\"1984\", \"George Orwell\", 1949));\n        lib.addBook(new Book(\"Animal Farm\", \"George Orwell\", 1945));\n        lib.addBook(new Book(\"Brave New World\", \"Aldous Huxley\", 1932));\n        \n        Book found = lib.findByTitle(\"1984\");\n        System.out.println(\"Found: \" + (found != null ? found.getTitle() : \"null\"));\n        \n        ArrayList<Book> orwellBooks = lib.getBooksByAuthor(\"George Orwell\");\n        System.out.println(\"Orwell books: \" + orwellBooks.size());\n        \n        System.out.println(\"Books after 1940: \" + lib.countBooksAfterYear(1940));\n    }\n}",
+            "expectedOutput": "Found: 1984\nOrwell books: 2\nBooks after 1940: 2",
+            "hints": [
+                "For findByTitle: loop through books and use equalsIgnoreCase() for comparison",
+                "Return the book immediately when found, or null after the loop",
+                "For getBooksByAuthor: create a new ArrayList and add matching books",
+                "For countBooksAfterYear: use a counter and increment when year condition is met"
+            ],
+            "tags": [
+                "collections",
+                "arraylist",
+                "searching",
+                "filtering"
+            ],
+            "timeComplexity": "O(n)",
+            "spaceComplexity": "O(n)"
+        },
+        {
+            "id": "rectangle-class",
+            "title": "Rectangle Class Implementation",
+            "difficulty": "medium",
+            "category": "object-oriented",
+            "description": "Complete the Rectangle class with methods to calculate area, perimeter, and check if it's a square.",
+            "questionCode": "public class Rectangle {\n    private double width;\n    private double height;\n    \n    public Rectangle(double width, double height) {\n        this.width = width;\n        this.height = height;\n    }\n    \n    // TODO: Calculate and return the area (width * height)\n    public double getArea() {\n        return 0.0;\n    }\n    \n    // TODO: Calculate and return the perimeter (2 * (width + height))\n    public double getPerimeter() {\n        return 0.0;\n    }\n    \n    // TODO: Return true if width equals height\n    public boolean isSquare() {\n        return false;\n    }\n    \n    public static void main(String[] args) {\n        Rectangle r1 = new Rectangle(5.0, 3.0);\n        Rectangle r2 = new Rectangle(4.0, 4.0);\n        \n        System.out.println(\"Rectangle 1 area: \" + r1.getArea());\n        System.out.println(\"Rectangle 1 perimeter: \" + r1.getPerimeter());\n        System.out.println(\"Rectangle 1 is square: \" + r1.isSquare());\n        System.out.println(\"Rectangle 2 is square: \" + r2.isSquare());\n    }\n}",
+            "solutionCode": "public class Rectangle {\n    private double width;\n    private double height;\n    \n    public Rectangle(double width, double height) {\n        this.width = width;\n        this.height = height;\n    }\n    \n    public double getArea() {\n        return width * height;\n    }\n    \n    public double getPerimeter() {\n        return 2 * (width + height);\n    }\n    \n    public boolean isSquare() {\n        return width == height;\n    }\n    \n    public static void main(String[] args) {\n        Rectangle r1 = new Rectangle(5.0, 3.0);\n        Rectangle r2 = new Rectangle(4.0, 4.0);\n        \n        System.out.println(\"Rectangle 1 area: \" + r1.getArea());\n        System.out.println(\"Rectangle 1 perimeter: \" + r1.getPerimeter());\n        System.out.println(\"Rectangle 1 is square: \" + r1.isSquare());\n        System.out.println(\"Rectangle 2 is square: \" + r2.isSquare());\n    }\n}",
+            "expectedOutput": "Rectangle 1 area: 15.0\nRectangle 1 perimeter: 16.0\nRectangle 1 is square: false\nRectangle 2 is square: true",
+            "hints": [
+                "Area formula: width * height",
+                "Perimeter formula: 2 * (width + height)",
+                "A rectangle is a square when width equals height",
+                "Use == to compare the two dimensions"
+            ],
+            "tags": [
+                "classes",
+                "methods",
+                "geometry"
+            ],
+            "timeComplexity": "O(1)",
+            "spaceComplexity": "O(1)"
+        },
+        {
+            "id": "prime-checker",
+            "title": "Prime Number Checker",
+            "difficulty": "hard",
+            "category": "algorithms",
+            "description": "Complete a method that checks if a number is prime (only divisible by 1 and itself).",
+            "questionCode": "public class MathUtils {\n    // TODO: Implement method to check if number is prime\n    // A prime number is greater than 1 and only divisible by 1 and itself\n    public static boolean isPrime(int n) {\n        return false;\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Is 2 prime: \" + isPrime(2));\n        System.out.println(\"Is 17 prime: \" + isPrime(17));\n        System.out.println(\"Is 20 prime: \" + isPrime(20));\n        System.out.println(\"Is 1 prime: \" + isPrime(1));\n    }\n}",
+            "solutionCode": "public class MathUtils {\n    public static boolean isPrime(int n) {\n        if (n <= 1) {\n            return false;\n        }\n        if (n == 2) {\n            return true;\n        }\n        if (n % 2 == 0) {\n            return false;\n        }\n        for (int i = 3; i * i <= n; i += 2) {\n            if (n % i == 0) {\n                return false;\n            }\n        }\n        return true;\n    }\n    \n    public static void main(String[] args) {\n        System.out.println(\"Is 2 prime: \" + isPrime(2));\n        System.out.println(\"Is 17 prime: \" + isPrime(17));\n        System.out.println(\"Is 20 prime: \" + isPrime(20));\n        System.out.println(\"Is 1 prime: \" + isPrime(1));\n    }\n}",
+            "expectedOutput": "Is 2 prime: true\nIs 17 prime: true\nIs 20 prime: false\nIs 1 prime: false",
+            "hints": [
+                "Numbers less than or equal to 1 are not prime",
+                "2 is the only even prime number",
+                "Check divisibility only up to the square root of n",
+                "Only check odd divisors after checking for 2",
+                "If any divisor is found, the number is not prime"
+            ],
+            "tags": [
+                "math",
+                "algorithms",
+                "optimization"
+            ],
+            "timeComplexity": "O(√n)",
+            "spaceComplexity": "O(1)"
         }
-    }
-}`,
-    solutionCode: `public class Utils {
-    public static int getRandom(int min, int max) {
-        return (int) (Math.random() * (max - min + 1)) + min;
-    }
-    
-    public static void main(String[] args) {
-        int result = getRandom(1, 10);
-        System.out.println("Random number between 1 and 10: " + result);
-        
-        // Test that result is in valid range
-        if (result >= 1 && result <= 10) {
-            System.out.println("Valid range: true");
-        } else {
-            System.out.println("Valid range: false");
-        }
-    }
-}`,
-    expectedOutput: `Random number between 1 and 10: 5
-Valid range: true`,
-    hints: [
-      'Use Math.random() which returns a double between 0.0 and 1.0',
-      'Scale the random value by multiplying by (max - min + 1)',
-      'Add min to shift the range to start at min',
-      'Cast the result to int to get a whole number'
-    ],
-    tags: ['math', 'random', 'basics'],
-    timeComplexity: 'O(1)',
-    spaceComplexity: 'O(1)'
-  },
-
-  // EASY: Person.compareTo implementation
-  {
-    id: 'person-compare-to',
-    title: 'Implement Person Comparison',
-    difficulty: 'easy',
-    category: 'object-oriented',
-    description: 'Complete the `compareTo` method in the Person class to compare persons by name first, then by age if names are equal.',
-    questionCode: `public class Person implements Comparable<Person> {
-    private String name;
-    private int age;
-
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    @Override
-    public int compareTo(Person o) {
-        // TODO: Compare by name first, then by age if names are equal
-        // Return negative if this < o, 0 if equal, positive if this > o
-        return 0;
-    }
-    
-    public static void main(String[] args) {
-        Person p1 = new Person("Alice", 25);
-        Person p2 = new Person("Bob", 30);
-        Person p3 = new Person("Alice", 20);
-        
-        System.out.println("Alice(25) vs Bob(30): " + p1.compareTo(p2));
-        System.out.println("Bob(30) vs Alice(25): " + p2.compareTo(p1));
-        System.out.println("Alice(25) vs Alice(20): " + p1.compareTo(p3));
-    }
-}`,
-    solutionCode: `public class Person implements Comparable<Person> {
-    private String name;
-    private int age;
-
-    public Person(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    @Override
-    public int compareTo(Person o) {
-        int result = this.name.compareTo(o.name);
-        if (result == 0) {
-            result = Integer.compare(age, o.age);
-        }
-        return result;
-    }
-    
-    public static void main(String[] args) {
-        Person p1 = new Person("Alice", 25);
-        Person p2 = new Person("Bob", 30);
-        Person p3 = new Person("Alice", 20);
-        
-        System.out.println("Alice(25) vs Bob(30): " + p1.compareTo(p2));
-        System.out.println("Bob(30) vs Alice(25): " + p2.compareTo(p1));
-        System.out.println("Alice(25) vs Alice(20): " + p1.compareTo(p3));
-    }
-}`,
-    expectedOutput: `Alice(25) vs Bob(30): -1
-Bob(30) vs Alice(25): 1
-Alice(25) vs Alice(20): 5`,
-    hints: [
-      'Use String.compareTo() to compare names',
-      'If names are equal (result == 0), compare ages',
-      'Use Integer.compare() to compare age values',
-      'Return the comparison result'
-    ],
-    tags: ['comparable', 'sorting', 'object-oriented'],
-    timeComplexity: 'O(n)',
-    spaceComplexity: 'O(1)'
-  },
-
-  // MEDIUM: Planet temperature methods
-  {
-    id: 'planet-temperature',
-    title: 'Planet Temperature Display',
-    difficulty: 'medium',
-    category: 'object-oriented',
-    description: 'Complete the Planet class with a constructor and toString method that displays planet name and temperature.',
-    questionCode: `public class Planet {
-    private double t;
-    private String name;
-
-    // TODO: Implement constructor that takes temperature and name
-    public Planet(double t, String name) {
-        
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getT() {
-        return t;
-    }
-    
-    // TODO: Implement toString to return "name : temperature°C"
-    public String toString() {
-        return "";
-    }
-    
-    public static void main(String[] args) {
-        Planet earth = new Planet(15.0, "Earth");
-        Planet mars = new Planet(-63.0, "Mars");
-        
-        System.out.println(earth.toString());
-        System.out.println(mars.toString());
-        System.out.println("Earth temp: " + earth.getT());
-    }
-}`,
-    solutionCode: `public class Planet {
-    private double t;
-    private String name;
-
-    public Planet(double t, String name) {
-        this.name = name;
-        this.t = t;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public double getT() {
-        return t;
-    }
-    
-    public String toString() {
-        return name + " : " + t + "C°";
-    }
-    
-    public static void main(String[] args) {
-        Planet earth = new Planet(15.0, "Earth");
-        Planet mars = new Planet(-63.0, "Mars");
-        
-        System.out.println(earth.toString());
-        System.out.println(mars.toString());
-        System.out.println("Earth temp: " + earth.getT());
-    }
-}`,
-    expectedOutput: `Earth : 15.0C°
-Mars : -63.0C°
-Earth temp: 15.0`,
-    hints: [
-      'In the constructor, assign parameters to instance variables using this keyword',
-      'The toString method should concatenate name, " : ", temperature, and "C°"',
-      'Use the + operator for string concatenation',
-      'Remember to return the formatted string'
-    ],
-    tags: ['classes', 'constructors', 'toString'],
-    timeComplexity: 'O(1)',
-    spaceComplexity: 'O(1)'
-  },
-
-  // MEDIUM: Planets collection methods
-  {
-    id: 'planets-collection',
-    title: 'Planet Collection Analysis',
-    difficulty: 'medium',
-    category: 'collections',
-    description: 'Complete methods in the Planets class to find the average temperature and locate a planet by temperature.',
-    questionCode: `import java.util.ArrayList;
-
-public class Planet {
-    private double t;
-    private String name;
-
-    public Planet(double t, String name) {
-        this.name = name;
-        this.t = t;
-    }
-
-    public double getT() {
-        return t;
-    }
+    ]
 }
-
-public class Planets {
-    private ArrayList<Planet> alPlanets = new ArrayList<>();
-    
-    public void add(Planet p) {
-        alPlanets.add(p);
-    }
-
-    // TODO: Calculate and return the average temperature of all planets
-    public double getAverageTemperature() {
-        return 0.0;
-    }
-
-    // TODO: Find the index of a planet with the given temperature
-    // Return -1 if not found
-    public int getFindResult(double t) {
-        return -1;
-    }
-    
-    public static void main(String[] args) {
-        Planets planets = new Planets();
-        planets.add(new Planet(15.0, "Earth"));
-        planets.add(new Planet(-63.0, "Mars"));
-        planets.add(new Planet(464.0, "Venus"));
-        
-        System.out.println("Average temperature: " + planets.getAverageTemperature());
-        System.out.println("Index of planet with temp 15.0: " + planets.getFindResult(15.0));
-        System.out.println("Index of planet with temp 100.0: " + planets.getFindResult(100.0));
-    }
-}`,
-    solutionCode: `import java.util.ArrayList;
-
-public class Planet {
-    private double t;
-    private String name;
-
-    public Planet(double t, String name) {
-        this.name = name;
-        this.t = t;
-    }
-
-    public double getT() {
-        return t;
-    }
-}
-
-public class Planets {
-    private ArrayList<Planet> alPlanets = new ArrayList<>();
-    
-    public void add(Planet p) {
-        alPlanets.add(p);
-    }
-
-    public double getAverageTemperature() {
-        double sum = 0;
-        for (Planet p : alPlanets) {
-            sum += p.getT();
-        }
-        return sum / alPlanets.size();
-    }
-
-    public int getFindResult(double t) {
-        for (int i = 0; i < alPlanets.size(); i++) {
-            Planet p = alPlanets.get(i);
-            if (t == p.getT()) {
-                return i;
-            }
-        }
-        return -1;
-    }
-    
-    public static void main(String[] args) {
-        Planets planets = new Planets();
-        planets.add(new Planet(15.0, "Earth"));
-        planets.add(new Planet(-63.0, "Mars"));
-        planets.add(new Planet(464.0, "Venus"));
-        
-        System.out.println("Average temperature: " + planets.getAverageTemperature());
-        System.out.println("Index of planet with temp 15.0: " + planets.getFindResult(15.0));
-        System.out.println("Index of planet with temp 100.0: " + planets.getFindResult(100.0));
-    }
-}`,
-    expectedOutput: `Average temperature: 138.66666666666666
-Index of planet with temp 15.0: 0
-Index of planet with temp 100.0: -1`,
-    hints: [
-      'For average: use a for-each loop to sum all temperatures',
-      'Divide the sum by the size of the ArrayList',
-      'For find: use a regular for loop with index',
-      'Compare each planet\'s temperature with the target temperature',
-      'Return the index when found, or -1 if the loop completes without finding'
-    ],
-    tags: ['collections', 'arraylist', 'loops', 'searching'],
-    timeComplexity: 'O(n)',
-    spaceComplexity: 'O(1)'
-  },
-
-  // HARD: Shape inheritance with Circle and Square
-  {
-    id: 'shape-inheritance',
-    title: 'Shape Inheritance System',
-    difficulty: 'hard',
-    category: 'object-oriented',
-    description: 'Complete the Shape inheritance hierarchy with abstract Shape class and concrete Circle and Square subclasses.',
-    questionCode: `public class Utils {
-    public static int getRandom(int min, int max) {
-        return (int) (Math.random() * (max - min + 1)) + min;
-    }
-}
-
-// TODO: Make Shape an abstract class
-public class Shape {
-    protected int x;
-    protected int y;
-    protected String color;
-
-    public Shape(int x, int y, String color) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    // TODO: Declare abstract method getArea() that returns double
-    
-    public void changeColor() {
-        int colorValue = Utils.getRandom(0, 2);
-        if (colorValue == 0) color = "Red";
-        else if (colorValue == 1) color = "Green";
-        else color = "Blue";
-    }
-}
-
-// TODO: Extend Shape class
-public class Circle {
-    private int radius;
-
-    public Circle(int x, int y, String color, int radius) {
-        // TODO: Call super constructor
-        this.radius = radius;
-    }
-
-    // TODO: Override getArea() to return circle area (π * r²)
-    
-}
-
-// TODO: Extend Shape class
-public class Square {
-    private int sideLength;
-
-    public Square(int x, int y, String color, int sideLength) {
-        // TODO: Call super constructor
-        this.sideLength = sideLength;
-    }
-
-    // TODO: Override getArea() to return square area (side²)
-    
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Circle circle = new Circle(10, 20, "Red", 5);
-        Square square = new Square(30, 40, "Blue", 10);
-        
-        System.out.println("Circle color: " + circle.getColor());
-        System.out.println("Circle area: " + circle.getArea());
-        System.out.println("Square color: " + square.getColor());
-        System.out.println("Square area: " + square.getArea());
-        
-        circle.changeColor();
-        System.out.println("Circle new color: " + circle.getColor());
-    }
-}`,
-    solutionCode: `public class Utils {
-    public static int getRandom(int min, int max) {
-        return (int) (Math.random() * (max - min + 1)) + min;
-    }
-}
-
-public abstract class Shape {
-    protected int x;
-    protected int y;
-    protected String color;
-
-    public Shape(int x, int y, String color) {
-        this.x = x;
-        this.y = y;
-        this.color = color;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public abstract double getArea();
-    
-    public void changeColor() {
-        int colorValue = Utils.getRandom(0, 2);
-        if (colorValue == 0) color = "Red";
-        else if (colorValue == 1) color = "Green";
-        else color = "Blue";
-    }
-}
-
-public class Circle extends Shape {
-    private int radius;
-
-    public Circle(int x, int y, String color, int radius) {
-        super(x, y, color);
-        this.radius = radius;
-    }
-
-    @Override
-    public double getArea() {
-        return Math.PI * radius * radius;
-    }
-}
-
-public class Square extends Shape {
-    private int sideLength;
-
-    public Square(int x, int y, String color, int sideLength) {
-        super(x, y, color);
-        this.sideLength = sideLength;
-    }
-
-    @Override
-    public double getArea() {
-        return sideLength * sideLength;
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        Circle circle = new Circle(10, 20, "Red", 5);
-        Square square = new Square(30, 40, "Blue", 10);
-        
-        System.out.println("Circle color: " + circle.getColor());
-        System.out.println("Circle area: " + circle.getArea());
-        System.out.println("Square color: " + square.getColor());
-        System.out.println("Square area: " + square.getArea());
-        
-        circle.changeColor();
-        System.out.println("Circle new color: " + circle.getColor());
-    }
-}`,
-    expectedOutput: `Circle color: Red
-Circle area: 78.53981633974483
-Square color: Blue
-Square area: 100.0
-Circle new color: Green`,
-    hints: [
-      'Use the "abstract" keyword before the class declaration for Shape',
-      'Declare an abstract method with no body: public abstract double getArea();',
-      'Use "extends Shape" in Circle and Square class declarations',
-      'Call super(x, y, color) as the first line in subclass constructors',
-      'Override getArea() in both subclasses with @Override annotation',
-      'Circle area formula: Math.PI * radius * radius',
-      'Square area formula: sideLength * sideLength'
-    ],
-    tags: ['inheritance', 'abstract-classes', 'polymorphism', 'oop'],
-    timeComplexity: 'O(1)',
-    spaceComplexity: 'O(1)'
-  },
-
-  // MEDIUM: Person with toString
-  {
-    id: 'person-to-string',
-    title: 'Person Contact Information',
-    difficulty: 'medium',
-    category: 'object-oriented',
-    description: 'Complete the Person class with a constructor and toString method that formats contact information.',
-    questionCode: `public class Person implements Comparable<Person> {
-    private String telNum;
-    private String mail;
-    private String name;
-
-    // TODO: Implement constructor
-    public Person(String name, String mail, String telNum) {
-        
-    }
-
-    public String getTelNum() {
-        return telNum;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public int compareTo(Person o) {
-        return this.name.compareTo(o.name);
-    }
-    
-    // TODO: Implement toString to return "name;mail;telNum"
-    @Override
-    public String toString() {
-        return "";
-    }
-    
-    public static void main(String[] args) {
-        Person p1 = new Person("Alice", "alice@email.com", "555-1234");
-        Person p2 = new Person("Bob", "bob@email.com", "555-5678");
-        
-        System.out.println(p1.toString());
-        System.out.println(p2.toString());
-        System.out.println("Name: " + p1.getName());
-    }
-}`,
-    solutionCode: `public class Person implements Comparable<Person> {
-    private String telNum;
-    private String mail;
-    private String name;
-
-    public Person(String name, String mail, String telNum) {
-        this.name = name;
-        this.mail = mail; 
-        this.telNum = telNum;
-    }
-
-    public String getTelNum() {
-        return telNum;
-    }
-
-    public String getMail() {
-        return mail;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public int compareTo(Person o) {
-        return this.name.compareTo(o.name);
-    }
-    
-    @Override
-    public String toString() {
-        return name + ";" + mail + ";" + telNum;
-    }
-    
-    public static void main(String[] args) {
-        Person p1 = new Person("Alice", "alice@email.com", "555-1234");
-        Person p2 = new Person("Bob", "bob@email.com", "555-5678");
-        
-        System.out.println(p1.toString());
-        System.out.println(p2.toString());
-        System.out.println("Name: " + p1.getName());
-    }
-}`,
-    expectedOutput: `Alice;alice@email.com;555-1234
-Bob;bob@email.com;555-5678
-Name: Alice`,
-    hints: [
-      'In the constructor, assign each parameter to the corresponding instance variable',
-      'Use the this keyword to distinguish instance variables from parameters',
-      'In toString, concatenate name, ";", mail, ";", and telNum',
-      'Use the + operator for string concatenation'
-    ],
-    tags: ['classes', 'constructors', 'toString', 'comparable'],
-    timeComplexity: 'O(1)',
-    spaceComplexity: 'O(1)'
-  }
-];
-
-// Export individual problems by difficulty for easy filtering
-export const easyProblems = codeProblems.filter(p => p.difficulty === 'easy');
-export const mediumProblems = codeProblems.filter(p => p.difficulty === 'medium');
-export const hardProblems = codeProblems.filter(p => p.difficulty === 'hard');
-
-// Export problems by category
-export const objectOrientedProblems = codeProblems.filter(p => p.category === 'object-oriented');
-export const collectionProblems = codeProblems.filter(p => p.category === 'collections');
-export const algorithmProblems = codeProblems.filter(p => p.category === 'algorithms');
