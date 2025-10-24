@@ -18,9 +18,8 @@
                 "Cast the result to int to get a whole number"
             ],
             "tags": [
-                "math",
-                "random",
-                "basics"
+                "easy",
+                "algorithms"
             ],
             "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
@@ -41,8 +40,7 @@
                 "Return the comparison result"
             ],
             "tags": [
-                "comparable",
-                "sorting",
+                "easy",
                 "object-oriented"
             ],
             "timeComplexity": "O(n)",
@@ -64,9 +62,8 @@
                 "Remember to return the formatted string"
             ],
             "tags": [
-                "classes",
-                "constructors",
-                "toString"
+                "medium",
+                "object-oriented"
             ],
             "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
@@ -88,10 +85,8 @@
                 "Return the index when found, or -1 if the loop completes without finding"
             ],
             "tags": [
-                "collections",
-                "arraylist",
-                "loops",
-                "searching"
+                "medium",
+                "collections"
             ],
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -115,10 +110,8 @@
                 "Square area formula: sideLength * sideLength"
             ],
             "tags": [
-                "inheritance",
-                "abstract-classes",
-                "polymorphism",
-                "oop"
+                "hard",
+                "object-oriented"
             ],
             "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
@@ -139,10 +132,8 @@
                 "Use the + operator for string concatenation"
             ],
             "tags": [
-                "classes",
-                "constructors",
-                "toString",
-                "comparable"
+                "medium",
+                "object-oriented"
             ],
             "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
@@ -163,9 +154,8 @@
                 "Return the final sum"
             ],
             "tags": [
-                "arrays",
-                "loops",
-                "basics"
+                "easy",
+                "algorithms"
             ],
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -186,9 +176,8 @@
                 "Convert StringBuilder to String and return"
             ],
             "tags": [
-                "strings",
-                "loops",
-                "basics"
+                "easy",
+                "algorithms"
             ],
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(n)"
@@ -209,9 +198,8 @@
                 "Update max if a larger value is found"
             ],
             "tags": [
-                "arrays",
-                "loops",
-                "searching"
+                "easy",
+                "algorithms"
             ],
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -233,9 +221,8 @@
                 "Increment counter if it's a vowel"
             ],
             "tags": [
-                "strings",
-                "loops",
-                "basics"
+                "easy",
+                "algorithms"
             ],
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -256,8 +243,7 @@
                 "Use long type to handle larger factorials"
             ],
             "tags": [
-                "math",
-                "loops",
+                "medium",
                 "algorithms"
             ],
             "timeComplexity": "O(n)",
@@ -280,9 +266,8 @@
                 "If all characters match, return true"
             ],
             "tags": [
-                "strings",
-                "algorithms",
-                "two-pointers"
+                "medium",
+                "algorithms"
             ],
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -304,9 +289,8 @@
                 "Update the two tracking variables"
             ],
             "tags": [
-                "math",
-                "algorithms",
-                "sequences"
+                "medium",
+                "algorithms"
             ],
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -327,9 +311,8 @@
                 "Return the boolean result of the comparison"
             ],
             "tags": [
-                "classes",
-                "arrays",
-                "methods"
+                "medium",
+                "object-oriented"
             ],
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(1)"
@@ -350,10 +333,8 @@
                 "For countBooksAfterYear: use a counter and increment when year condition is met"
             ],
             "tags": [
-                "collections",
-                "arraylist",
-                "searching",
-                "filtering"
+                "hard",
+                "collections"
             ],
             "timeComplexity": "O(n)",
             "spaceComplexity": "O(n)"
@@ -374,9 +355,8 @@
                 "Use == to compare the two dimensions"
             ],
             "tags": [
-                "classes",
-                "methods",
-                "geometry"
+                "medium",
+                "object-oriented"
             ],
             "timeComplexity": "O(1)",
             "spaceComplexity": "O(1)"
@@ -398,9 +378,8 @@
                 "If any divisor is found, the number is not prime"
             ],
             "tags": [
-                "math",
-                "algorithms",
-                "optimization"
+                "hard",
+                "algorithms"
             ],
             "timeComplexity": "O(\u00e2\u02c6\u0161n)",
             "spaceComplexity": "O(1)"
