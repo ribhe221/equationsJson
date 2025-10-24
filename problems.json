@@ -1,0 +1,630 @@
+import { CodeProblem } from '@/types/code';
+
+/**
+ * Sample code problems based on Java classes from javaProblems folder
+ * Each problem includes:
+ * - questionCode: Incomplete code for students to complete
+ * - solutionCode: Complete, correct solution
+ * - expectedOutput: Output when solution runs
+ * - Metadata: difficulty, category, description, hints
+ */
+
+export const codeProblems: CodeProblem[] = [
+  // EASY: Utils.getRandom method
+  {
+    id: 'utils-get-random',
+    title: 'Implement Random Number Generator',
+    difficulty: 'easy',
+    category: 'algorithms',
+    description: 'Complete the `getRandom` method in the Utils class that returns a random integer between min and max (inclusive).',
+    questionCode: `public class Utils {
+    public static int getRandom(int min, int max) {
+        // TODO: Implement random number generation
+        // Return a random integer between min and max (inclusive)
+        return 0;
+    }
+    
+    public static void main(String[] args) {
+        int result = getRandom(1, 10);
+        System.out.println("Random number between 1 and 10: " + result);
+        
+        // Test that result is in valid range
+        if (result >= 1 && result <= 10) {
+            System.out.println("Valid range: true");
+        } else {
+            System.out.println("Valid range: false");
+        }
+    }
+}`,
+    solutionCode: `public class Utils {
+    public static int getRandom(int min, int max) {
+        return (int) (Math.random() * (max - min + 1)) + min;
+    }
+    
+    public static void main(String[] args) {
+        int result = getRandom(1, 10);
+        System.out.println("Random number between 1 and 10: " + result);
+        
+        // Test that result is in valid range
+        if (result >= 1 && result <= 10) {
+            System.out.println("Valid range: true");
+        } else {
+            System.out.println("Valid range: false");
+        }
+    }
+}`,
+    expectedOutput: `Random number between 1 and 10: 5
+Valid range: true`,
+    hints: [
+      'Use Math.random() which returns a double between 0.0 and 1.0',
+      'Scale the random value by multiplying by (max - min + 1)',
+      'Add min to shift the range to start at min',
+      'Cast the result to int to get a whole number'
+    ],
+    tags: ['math', 'random', 'basics'],
+    timeComplexity: 'O(1)',
+    spaceComplexity: 'O(1)'
+  },
+
+  // EASY: Person.compareTo implementation
+  {
+    id: 'person-compare-to',
+    title: 'Implement Person Comparison',
+    difficulty: 'easy',
+    category: 'object-oriented',
+    description: 'Complete the `compareTo` method in the Person class to compare persons by name first, then by age if names are equal.',
+    questionCode: `public class Person implements Comparable<Person> {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        // TODO: Compare by name first, then by age if names are equal
+        // Return negative if this < o, 0 if equal, positive if this > o
+        return 0;
+    }
+    
+    public static void main(String[] args) {
+        Person p1 = new Person("Alice", 25);
+        Person p2 = new Person("Bob", 30);
+        Person p3 = new Person("Alice", 20);
+        
+        System.out.println("Alice(25) vs Bob(30): " + p1.compareTo(p2));
+        System.out.println("Bob(30) vs Alice(25): " + p2.compareTo(p1));
+        System.out.println("Alice(25) vs Alice(20): " + p1.compareTo(p3));
+    }
+}`,
+    solutionCode: `public class Person implements Comparable<Person> {
+    private String name;
+    private int age;
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        int result = this.name.compareTo(o.name);
+        if (result == 0) {
+            result = Integer.compare(age, o.age);
+        }
+        return result;
+    }
+    
+    public static void main(String[] args) {
+        Person p1 = new Person("Alice", 25);
+        Person p2 = new Person("Bob", 30);
+        Person p3 = new Person("Alice", 20);
+        
+        System.out.println("Alice(25) vs Bob(30): " + p1.compareTo(p2));
+        System.out.println("Bob(30) vs Alice(25): " + p2.compareTo(p1));
+        System.out.println("Alice(25) vs Alice(20): " + p1.compareTo(p3));
+    }
+}`,
+    expectedOutput: `Alice(25) vs Bob(30): -1
+Bob(30) vs Alice(25): 1
+Alice(25) vs Alice(20): 5`,
+    hints: [
+      'Use String.compareTo() to compare names',
+      'If names are equal (result == 0), compare ages',
+      'Use Integer.compare() to compare age values',
+      'Return the comparison result'
+    ],
+    tags: ['comparable', 'sorting', 'object-oriented'],
+    timeComplexity: 'O(n)',
+    spaceComplexity: 'O(1)'
+  },
+
+  // MEDIUM: Planet temperature methods
+  {
+    id: 'planet-temperature',
+    title: 'Planet Temperature Display',
+    difficulty: 'medium',
+    category: 'object-oriented',
+    description: 'Complete the Planet class with a constructor and toString method that displays planet name and temperature.',
+    questionCode: `public class Planet {
+    private double t;
+    private String name;
+
+    // TODO: Implement constructor that takes temperature and name
+    public Planet(double t, String name) {
+        
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getT() {
+        return t;
+    }
+    
+    // TODO: Implement toString to return "name : temperature°C"
+    public String toString() {
+        return "";
+    }
+    
+    public static void main(String[] args) {
+        Planet earth = new Planet(15.0, "Earth");
+        Planet mars = new Planet(-63.0, "Mars");
+        
+        System.out.println(earth.toString());
+        System.out.println(mars.toString());
+        System.out.println("Earth temp: " + earth.getT());
+    }
+}`,
+    solutionCode: `public class Planet {
+    private double t;
+    private String name;
+
+    public Planet(double t, String name) {
+        this.name = name;
+        this.t = t;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getT() {
+        return t;
+    }
+    
+    public String toString() {
+        return name + " : " + t + "C°";
+    }
+    
+    public static void main(String[] args) {
+        Planet earth = new Planet(15.0, "Earth");
+        Planet mars = new Planet(-63.0, "Mars");
+        
+        System.out.println(earth.toString());
+        System.out.println(mars.toString());
+        System.out.println("Earth temp: " + earth.getT());
+    }
+}`,
+    expectedOutput: `Earth : 15.0C°
+Mars : -63.0C°
+Earth temp: 15.0`,
+    hints: [
+      'In the constructor, assign parameters to instance variables using this keyword',
+      'The toString method should concatenate name, " : ", temperature, and "C°"',
+      'Use the + operator for string concatenation',
+      'Remember to return the formatted string'
+    ],
+    tags: ['classes', 'constructors', 'toString'],
+    timeComplexity: 'O(1)',
+    spaceComplexity: 'O(1)'
+  },
+
+  // MEDIUM: Planets collection methods
+  {
+    id: 'planets-collection',
+    title: 'Planet Collection Analysis',
+    difficulty: 'medium',
+    category: 'collections',
+    description: 'Complete methods in the Planets class to find the average temperature and locate a planet by temperature.',
+    questionCode: `import java.util.ArrayList;
+
+public class Planet {
+    private double t;
+    private String name;
+
+    public Planet(double t, String name) {
+        this.name = name;
+        this.t = t;
+    }
+
+    public double getT() {
+        return t;
+    }
+}
+
+public class Planets {
+    private ArrayList<Planet> alPlanets = new ArrayList<>();
+    
+    public void add(Planet p) {
+        alPlanets.add(p);
+    }
+
+    // TODO: Calculate and return the average temperature of all planets
+    public double getAverageTemperature() {
+        return 0.0;
+    }
+
+    // TODO: Find the index of a planet with the given temperature
+    // Return -1 if not found
+    public int getFindResult(double t) {
+        return -1;
+    }
+    
+    public static void main(String[] args) {
+        Planets planets = new Planets();
+        planets.add(new Planet(15.0, "Earth"));
+        planets.add(new Planet(-63.0, "Mars"));
+        planets.add(new Planet(464.0, "Venus"));
+        
+        System.out.println("Average temperature: " + planets.getAverageTemperature());
+        System.out.println("Index of planet with temp 15.0: " + planets.getFindResult(15.0));
+        System.out.println("Index of planet with temp 100.0: " + planets.getFindResult(100.0));
+    }
+}`,
+    solutionCode: `import java.util.ArrayList;
+
+public class Planet {
+    private double t;
+    private String name;
+
+    public Planet(double t, String name) {
+        this.name = name;
+        this.t = t;
+    }
+
+    public double getT() {
+        return t;
+    }
+}
+
+public class Planets {
+    private ArrayList<Planet> alPlanets = new ArrayList<>();
+    
+    public void add(Planet p) {
+        alPlanets.add(p);
+    }
+
+    public double getAverageTemperature() {
+        double sum = 0;
+        for (Planet p : alPlanets) {
+            sum += p.getT();
+        }
+        return sum / alPlanets.size();
+    }
+
+    public int getFindResult(double t) {
+        for (int i = 0; i < alPlanets.size(); i++) {
+            Planet p = alPlanets.get(i);
+            if (t == p.getT()) {
+                return i;
+            }
+        }
+        return -1;
+    }
+    
+    public static void main(String[] args) {
+        Planets planets = new Planets();
+        planets.add(new Planet(15.0, "Earth"));
+        planets.add(new Planet(-63.0, "Mars"));
+        planets.add(new Planet(464.0, "Venus"));
+        
+        System.out.println("Average temperature: " + planets.getAverageTemperature());
+        System.out.println("Index of planet with temp 15.0: " + planets.getFindResult(15.0));
+        System.out.println("Index of planet with temp 100.0: " + planets.getFindResult(100.0));
+    }
+}`,
+    expectedOutput: `Average temperature: 138.66666666666666
+Index of planet with temp 15.0: 0
+Index of planet with temp 100.0: -1`,
+    hints: [
+      'For average: use a for-each loop to sum all temperatures',
+      'Divide the sum by the size of the ArrayList',
+      'For find: use a regular for loop with index',
+      'Compare each planet\'s temperature with the target temperature',
+      'Return the index when found, or -1 if the loop completes without finding'
+    ],
+    tags: ['collections', 'arraylist', 'loops', 'searching'],
+    timeComplexity: 'O(n)',
+    spaceComplexity: 'O(1)'
+  },
+
+  // HARD: Shape inheritance with Circle and Square
+  {
+    id: 'shape-inheritance',
+    title: 'Shape Inheritance System',
+    difficulty: 'hard',
+    category: 'object-oriented',
+    description: 'Complete the Shape inheritance hierarchy with abstract Shape class and concrete Circle and Square subclasses.',
+    questionCode: `public class Utils {
+    public static int getRandom(int min, int max) {
+        return (int) (Math.random() * (max - min + 1)) + min;
+    }
+}
+
+// TODO: Make Shape an abstract class
+public class Shape {
+    protected int x;
+    protected int y;
+    protected String color;
+
+    public Shape(int x, int y, String color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    // TODO: Declare abstract method getArea() that returns double
+    
+    public void changeColor() {
+        int colorValue = Utils.getRandom(0, 2);
+        if (colorValue == 0) color = "Red";
+        else if (colorValue == 1) color = "Green";
+        else color = "Blue";
+    }
+}
+
+// TODO: Extend Shape class
+public class Circle {
+    private int radius;
+
+    public Circle(int x, int y, String color, int radius) {
+        // TODO: Call super constructor
+        this.radius = radius;
+    }
+
+    // TODO: Override getArea() to return circle area (π * r²)
+    
+}
+
+// TODO: Extend Shape class
+public class Square {
+    private int sideLength;
+
+    public Square(int x, int y, String color, int sideLength) {
+        // TODO: Call super constructor
+        this.sideLength = sideLength;
+    }
+
+    // TODO: Override getArea() to return square area (side²)
+    
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Circle circle = new Circle(10, 20, "Red", 5);
+        Square square = new Square(30, 40, "Blue", 10);
+        
+        System.out.println("Circle color: " + circle.getColor());
+        System.out.println("Circle area: " + circle.getArea());
+        System.out.println("Square color: " + square.getColor());
+        System.out.println("Square area: " + square.getArea());
+        
+        circle.changeColor();
+        System.out.println("Circle new color: " + circle.getColor());
+    }
+}`,
+    solutionCode: `public class Utils {
+    public static int getRandom(int min, int max) {
+        return (int) (Math.random() * (max - min + 1)) + min;
+    }
+}
+
+public abstract class Shape {
+    protected int x;
+    protected int y;
+    protected String color;
+
+    public Shape(int x, int y, String color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public abstract double getArea();
+    
+    public void changeColor() {
+        int colorValue = Utils.getRandom(0, 2);
+        if (colorValue == 0) color = "Red";
+        else if (colorValue == 1) color = "Green";
+        else color = "Blue";
+    }
+}
+
+public class Circle extends Shape {
+    private int radius;
+
+    public Circle(int x, int y, String color, int radius) {
+        super(x, y, color);
+        this.radius = radius;
+    }
+
+    @Override
+    public double getArea() {
+        return Math.PI * radius * radius;
+    }
+}
+
+public class Square extends Shape {
+    private int sideLength;
+
+    public Square(int x, int y, String color, int sideLength) {
+        super(x, y, color);
+        this.sideLength = sideLength;
+    }
+
+    @Override
+    public double getArea() {
+        return sideLength * sideLength;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Circle circle = new Circle(10, 20, "Red", 5);
+        Square square = new Square(30, 40, "Blue", 10);
+        
+        System.out.println("Circle color: " + circle.getColor());
+        System.out.println("Circle area: " + circle.getArea());
+        System.out.println("Square color: " + square.getColor());
+        System.out.println("Square area: " + square.getArea());
+        
+        circle.changeColor();
+        System.out.println("Circle new color: " + circle.getColor());
+    }
+}`,
+    expectedOutput: `Circle color: Red
+Circle area: 78.53981633974483
+Square color: Blue
+Square area: 100.0
+Circle new color: Green`,
+    hints: [
+      'Use the "abstract" keyword before the class declaration for Shape',
+      'Declare an abstract method with no body: public abstract double getArea();',
+      'Use "extends Shape" in Circle and Square class declarations',
+      'Call super(x, y, color) as the first line in subclass constructors',
+      'Override getArea() in both subclasses with @Override annotation',
+      'Circle area formula: Math.PI * radius * radius',
+      'Square area formula: sideLength * sideLength'
+    ],
+    tags: ['inheritance', 'abstract-classes', 'polymorphism', 'oop'],
+    timeComplexity: 'O(1)',
+    spaceComplexity: 'O(1)'
+  },
+
+  // MEDIUM: Person with toString
+  {
+    id: 'person-to-string',
+    title: 'Person Contact Information',
+    difficulty: 'medium',
+    category: 'object-oriented',
+    description: 'Complete the Person class with a constructor and toString method that formats contact information.',
+    questionCode: `public class Person implements Comparable<Person> {
+    private String telNum;
+    private String mail;
+    private String name;
+
+    // TODO: Implement constructor
+    public Person(String name, String mail, String telNum) {
+        
+    }
+
+    public String getTelNum() {
+        return telNum;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        return this.name.compareTo(o.name);
+    }
+    
+    // TODO: Implement toString to return "name;mail;telNum"
+    @Override
+    public String toString() {
+        return "";
+    }
+    
+    public static void main(String[] args) {
+        Person p1 = new Person("Alice", "alice@email.com", "555-1234");
+        Person p2 = new Person("Bob", "bob@email.com", "555-5678");
+        
+        System.out.println(p1.toString());
+        System.out.println(p2.toString());
+        System.out.println("Name: " + p1.getName());
+    }
+}`,
+    solutionCode: `public class Person implements Comparable<Person> {
+    private String telNum;
+    private String mail;
+    private String name;
+
+    public Person(String name, String mail, String telNum) {
+        this.name = name;
+        this.mail = mail; 
+        this.telNum = telNum;
+    }
+
+    public String getTelNum() {
+        return telNum;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        return this.name.compareTo(o.name);
+    }
+    
+    @Override
+    public String toString() {
+        return name + ";" + mail + ";" + telNum;
+    }
+    
+    public static void main(String[] args) {
+        Person p1 = new Person("Alice", "alice@email.com", "555-1234");
+        Person p2 = new Person("Bob", "bob@email.com", "555-5678");
+        
+        System.out.println(p1.toString());
+        System.out.println(p2.toString());
+        System.out.println("Name: " + p1.getName());
+    }
+}`,
+    expectedOutput: `Alice;alice@email.com;555-1234
+Bob;bob@email.com;555-5678
+Name: Alice`,
+    hints: [
+      'In the constructor, assign each parameter to the corresponding instance variable',
+      'Use the this keyword to distinguish instance variables from parameters',
+      'In toString, concatenate name, ";", mail, ";", and telNum',
+      'Use the + operator for string concatenation'
+    ],
+    tags: ['classes', 'constructors', 'toString', 'comparable'],
+    timeComplexity: 'O(1)',
+    spaceComplexity: 'O(1)'
+  }
+];
+
+// Export individual problems by difficulty for easy filtering
+export const easyProblems = codeProblems.filter(p => p.difficulty === 'easy');
+export const mediumProblems = codeProblems.filter(p => p.difficulty === 'medium');
+export const hardProblems = codeProblems.filter(p => p.difficulty === 'hard');
+
+// Export problems by category
+export const objectOrientedProblems = codeProblems.filter(p => p.category === 'object-oriented');
+export const collectionProblems = codeProblems.filter(p => p.category === 'collections');
+export const algorithmProblems = codeProblems.filter(p => p.category === 'algorithms');
